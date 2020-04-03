@@ -13093,7 +13093,25 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[209]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># REFERENCES</span>
+
+<span class="c1">#https://stackoverflow.com/questions/1401712/how-can-the-euclidean-distance-be-calculated-with-numpy</span>
+<span class="c1">#https://stackoverflow.com/questions/18424228/cosine-similarity-between-2-number-lists</span>
+<span class="c1">#https://stackoverflow.com/questions/38161071/how-to-calculate-normalized-euclidean-distance-on-two-vectors/54170399</span>
+<span class="c1">#https://pythonspot.com/matplotlib-bar-chart/</span>
+<span class="c1">#https://www.youtube.com/watch?v=0y0UIwODaRE</span>
 </pre></div>
 
     </div>
@@ -13244,14 +13262,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="prompt input_prompt">In&nbsp;[306]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">4</span><span class="p">]</span>
 <span class="n">y</span><span class="o">=</span><span class="n">iris</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
 
 <span class="c1"># 80/20 split of dataset</span>
-<span class="n">x_develop</span><span class="p">,</span><span class="n">x_test</span><span class="p">,</span><span class="n">y_develop</span><span class="p">,</span><span class="n">y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">x_develop</span><span class="p">,</span><span class="n">x_test</span><span class="p">,</span><span class="n">y_develop</span><span class="p">,</span><span class="n">y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
 <span class="c1"># converting dataframe into numpy arrays for easier iteration later on</span>
 <span class="n">x_develop</span><span class="p">,</span><span class="n">x_test</span><span class="p">,</span><span class="n">y_develop</span><span class="p">,</span><span class="n">y_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_develop</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_develop</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
 </pre></div>
@@ -13264,7 +13282,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="KNN-Algorithm">KNN Algorithm<a class="anchor-link" href="#KNN-Algorithm">&#182;</a></h2>
+<h3 id="Hyperparameter-Calculations">Hyperparameter Calculations<a class="anchor-link" href="#Hyperparameter-Calculations">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -13277,7 +13295,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[173]:</div>
+<div class="prompt input_prompt">In&nbsp;[307]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">euclidean_distance</span><span class="p">(</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">):</span>
@@ -13302,12 +13320,17 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[174]:</div>
+<div class="prompt input_prompt">In&nbsp;[318]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cosine_similarity</span><span class="p">(</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">):</span>
     <span class="n">sim</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="n">sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">row1</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="p">(</span><span class="n">row2</span><span class="p">))</span>
+    <span class="c1">#sim = np.inner(row1, row2) / (norm(row1) * norm(row2))</span>
+    <span class="c1">#</span>
+    <span class="n">dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">)</span>
+    <span class="n">norm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">row1</span><span class="p">)</span>
+    <span class="n">norm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">row2</span><span class="p">)</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm1</span> <span class="o">*</span> <span class="n">norm2</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">sim</span>
 </pre></div>
 
@@ -13339,42 +13362,148 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[248]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">lst2</span><span class="p">):</span> 
+    <span class="n">lst3</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">lst1</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">lst2</span><span class="p">]</span> 
+    <span class="k">return</span> <span class="n">lst3</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Calculating-distances">Calculating distances<a class="anchor-link" href="#Calculating-distances">&#182;</a></h3>
+<h2 id="KNN-Algorithm">KNN Algorithm<a class="anchor-link" href="#KNN-Algorithm">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[198]:</div>
+<div class="prompt input_prompt">In&nbsp;[316]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">###Calculating Distances between test and development set rows</span>
 <span class="c1">## using above mentioned distance metrics</span>
+<span class="k">def</span> <span class="nf">KNN_algo</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span><span class="n">x_develop</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">metric</span><span class="p">):</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">x_develop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="n">rows</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">columns</span> <span class="o">=</span> <span class="n">x_develop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="c1">##initializing arrays of array</span>
-<span class="n">Edistance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x_develop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="n">Cdistance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x_develop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="n">NEdistance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x_develop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="c1">##initializing arrays of array</span>
+    <span class="n">Edistance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span><span class="n">columns</span><span class="p">))</span>
+    <span class="n">Cdistance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span><span class="n">columns</span><span class="p">))</span>
+    <span class="n">NEdistance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">rows</span><span class="p">,</span><span class="n">columns</span><span class="p">))</span>
 
 
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
-        <span class="c1">#for euclidean</span>
-        <span class="n">Edistance</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">euclidean_distance</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">row</span><span class="p">],</span> <span class="n">x_develop</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
-        <span class="c1">#for cosine similarity</span>
-        <span class="n">Cdistance</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">row</span><span class="p">],</span> <span class="n">x_develop</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
-        <span class="c1">#for normalized euclidean distance</span>
-        <span class="n">NEdistance</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalized_euclidean_distance</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">row</span><span class="p">],</span> <span class="n">x_develop</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">columns</span><span class="p">):</span>
+            <span class="c1">#for euclidean</span>
+            <span class="n">Edistance</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">euclidean_distance</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">row</span><span class="p">],</span> <span class="n">x_develop</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+            <span class="c1">#for cosine similarity</span>
+            <span class="n">Cdistance</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">row</span><span class="p">],</span> <span class="n">x_develop</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+            <span class="c1">#for normalized euclidean distance</span>
+            <span class="n">NEdistance</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">normalized_euclidean_distance</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">row</span><span class="p">],</span> <span class="n">x_develop</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
 
-<span class="nb">print</span> <span class="p">(</span><span class="n">Edistance</span><span class="p">)</span><span class="c1">#Euclidean distance</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">Cdistance</span><span class="p">)</span><span class="c1">#Cosine Similarity</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">NEdistance</span><span class="p">)</span><span class="c1">#Normalized Euclidean distance</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">Edistance</span><span class="p">)</span><span class="c1">#Euclidean distance</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">Cdistance</span><span class="p">)</span><span class="c1">#Cosine Similarity</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">NEdistance</span><span class="p">)</span><span class="c1">#Normalized Euclidean distance</span>
+
+    <span class="k">if</span> <span class="n">metric</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="s1">&#39;euclidean&#39;</span><span class="p">:</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">Edistance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">E_pred</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+            <span class="n">E_y_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">Edistance</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+            <span class="n">Eclosest</span> <span class="o">=</span> <span class="n">y_develop</span><span class="p">[</span><span class="n">E_y_indexes</span><span class="p">[:</span><span class="n">k</span><span class="p">]]</span>
+            <span class="n">Evalue</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">Eclosest</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">()</span>
+            <span class="n">E_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Evalue</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+   
+        <span class="c1">#print(E_pred)</span>
+        <span class="n">num_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">E_pred</span> <span class="o">==</span> <span class="n">y_develop</span><span class="p">)</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_correct</span><span class="p">)</span><span class="o">/</span><span class="n">y_develop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_incorr</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">E_pred</span><span class="p">)</span><span class="o">-</span><span class="n">num_correct</span>
+    
+    <span class="k">elif</span> <span class="n">metric</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="s1">&#39;cosine&#39;</span><span class="p">:</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">Cdistance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">C_pred</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+            <span class="n">C_y_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">Cdistance</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+            <span class="c1">#print(C_y_indexes)</span>
+            <span class="n">Cclosest</span> <span class="o">=</span> <span class="n">y_develop</span><span class="p">[</span><span class="n">C_y_indexes</span><span class="p">[:</span><span class="n">k</span><span class="p">]]</span>
+            <span class="c1">#print(Cclosest)</span>
+            <span class="n">Cvalue</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">Cclosest</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">()</span>
+            <span class="c1">#print(Cvalue)</span>
+            <span class="n">C_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Cvalue</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+            
+        <span class="c1">#print(C_pred)</span>
+        <span class="c1">#num_correct = np.sum(C_pred == y_develop)</span>
+        <span class="c1">#print(num_correct)</span>
+        <span class="n">num_correct</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">intersection</span><span class="p">(</span><span class="n">C_pred</span><span class="p">,</span><span class="n">y_develop</span><span class="p">))</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_correct</span><span class="p">)</span><span class="o">/</span><span class="n">y_develop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_incorr</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">C_pred</span><span class="p">)</span><span class="o">-</span><span class="n">num_correct</span>
+        
+    <span class="k">elif</span> <span class="n">metric</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="s1">&#39;normalized euclidean&#39;</span><span class="p">:</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">NEdistance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">NE_pred</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+            <span class="n">NE_y_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">NEdistance</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+            <span class="n">NEclosest</span> <span class="o">=</span> <span class="n">y_develop</span><span class="p">[</span><span class="n">NE_y_indexes</span><span class="p">[:</span><span class="n">k</span><span class="p">]]</span>
+            <span class="n">NEvalue</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">NEclosest</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">()</span>
+            <span class="n">NE_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NEvalue</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>   
+            
+        <span class="c1">#print(NE_pred)</span>
+        <span class="n">num_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">NE_pred</span> <span class="o">==</span> <span class="n">y_develop</span><span class="p">)</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_correct</span><span class="p">)</span><span class="o">/</span><span class="n">y_develop</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">num_incorr</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">NE_pred</span><span class="p">)</span><span class="o">-</span><span class="n">num_correct</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ACCURACY-------------------------------------------------------------&#39;</span><span class="p">)</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Correctly classified instances:&#39;</span><span class="p">,</span><span class="n">num_correct</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Incorrectly classified instances:&#39;</span><span class="p">,</span><span class="n">num_incorr</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy based on&quot;</span><span class="p">,</span><span class="n">metric</span><span class="p">,</span><span class="s2">&quot; with&quot;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s2">&quot;Neighbors:&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;---------------------------------------------------------------------&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">accuracy</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Calculating-Accuracy-using-Development-Dataset">Calculating Accuracy using Development Dataset<a class="anchor-link" href="#Calculating-Accuracy-using-Development-Dataset">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[321]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#e1 = KNN_algo(x_develop,x_develop,1,&#39;euclidean&#39;) *100</span>
+<span class="c1">#e3 = KNN_algo(x_develop,x_develop,3,&#39;euclidean&#39;) *100</span>
+<span class="n">e5</span> <span class="o">=</span> <span class="n">KNN_algo</span><span class="p">(</span><span class="n">x_develop</span><span class="p">,</span><span class="n">x_develop</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span> <span class="o">*</span><span class="mi">100</span>
+<span class="c1">#e7 = KNN_algo(x_develop,x_develop,7,&#39;euclidean&#39;) *100</span>
+
+<span class="c1">#c1 = KNN_algo(x_develop,x_develop,1,&#39;cosine&#39;) *100</span>
+<span class="c1">#c3 = KNN_algo(x_develop,x_develop,3,&#39;cosine&#39;) *100</span>
+<span class="n">c5</span> <span class="o">=</span> <span class="n">KNN_algo</span><span class="p">(</span><span class="n">x_develop</span><span class="p">,</span><span class="n">x_develop</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;cosine&#39;</span><span class="p">)</span> <span class="o">*</span><span class="mi">100</span>
+<span class="c1">#c7 = KNN_algo(x_develop,x_develop,7,&#39;cosine&#39;) *100</span>
+
+<span class="c1">#ne1 = KNN_algo(x_develop,x_develop,1,&#39;euclidean&#39;) *100</span>
+<span class="c1">#ne3 = KNN_algo(x_develop,x_develop,3,&#39;euclidean&#39;) *100</span>
+<span class="n">ne5</span> <span class="o">=</span> <span class="n">KNN_algo</span><span class="p">(</span><span class="n">x_develop</span><span class="p">,</span><span class="n">x_develop</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span> <span class="o">*</span><span class="mi">100</span>
+<span class="c1">#ne7 = KNN_algo(x_develop,x_develop,7,&#39;euclidean&#39;) *100</span>
 </pre></div>
 
     </div>
@@ -13391,27 +13520,84 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[4.07185461 3.6        0.73484692 ... 3.71214224 0.78740079 1.57480157]
- [1.3190906  0.63245553 2.96310648 ... 0.54772256 2.596151   4.49888875]
- [6.73943618 6.03324125 2.73861279 ... 6.16927873 3.46698716 1.2328828 ]
+<pre>[[0.         0.91651514 0.3        ... 3.37934905 1.02956301 0.71414284]
+ [0.91651514 0.         0.83066239 ... 2.64952826 0.6164414  0.99498744]
+ [0.3        0.83066239 0.         ... 3.13847097 0.83066239 0.42426407]
  ...
- [5.3860932  4.69148164 1.50665192 ... 4.87134478 2.22934968 0.36055513]
- [0.74833148 1.6673332  3.55246393 ... 1.42828569 2.81424946 5.05371151]
- [0.80622577 1.58429795 3.38378486 ... 1.40356688 2.64764046 4.87749936]]
-[[0.87730887 0.89539169 0.99723763 ... 0.88600082 0.99870624 0.99654908]
- [0.99449144 0.99693372 0.94073609 ... 0.99700311 0.93245912 0.89123068]
- [0.80624005 0.82899538 0.98170628 ... 0.81816902 0.98594058 0.99718842]
+ [3.37934905 2.64952826 3.13847097 ... 0.         2.596151   2.9       ]
+ [1.02956301 0.6164414  0.83066239 ... 2.596151   0.         0.83066239]
+ [0.71414284 0.99498744 0.42426407 ... 2.9        0.83066239 0.        ]]
+[[1.         0.997864   0.99976849 ... 0.99468173 0.99916136 0.9980428 ]
+ [0.997864   1.         0.99653778 ... 0.9943927  0.99753348 0.99230886]
+ [0.99976849 0.99653778 1.         ... 0.99448171 0.99870808 0.99899436]
  ...
- [0.84361412 0.86488867 0.98933363 ... 0.85077925 0.99169396 0.99918424]
- [0.99188736 0.99468916 0.94492558 ... 0.99603721 0.93684057 0.89626141]
- [0.99076917 0.99419158 0.94955818 ... 0.99411692 0.94211471 0.90292976]]
-[[0.19133507 0.18142145 0.00729167 ... 0.17182847 0.00511408 0.00928881]
- [0.01082143 0.00494908 0.0909198  ... 0.00392679 0.11332279 0.18749069]
- [0.32912805 0.30781778 0.05798546 ... 0.28922046 0.06379007 0.01317247]
+ [0.99468173 0.9943927  0.99448171 ... 1.         0.9901723  0.99395842]
+ [0.99916136 0.99753348 0.99870808 ... 0.9901723  1.         0.9957586 ]
+ [0.9980428  0.99230886 0.99899436 ... 0.99395842 0.9957586  1.        ]]
+[[0.         0.0118593  0.00067609 ... 0.04845606 0.00874453 0.00326296]
+ [0.0118593  0.         0.01241222 ... 0.01930713 0.00500777 0.02058012]
+ [0.00067609 0.01241222 0.         ... 0.04577437 0.00793488 0.00150451]
  ...
- [0.2619225  0.24992195 0.02417391 ... 0.23695198 0.0175404  0.00274613]
- [0.01153573 0.02060428 0.08540036 ... 0.02121454 0.09788131 0.18209167]
- [0.01265249 0.02046686 0.07839558 ... 0.02235014 0.09018326 0.17149886]]
+ [0.04845606 0.01930713 0.04577437 ... 0.         0.03561913 0.05208083]
+ [0.00874453 0.00500777 0.00793488 ... 0.03561913 0.         0.0149783 ]
+ [0.00326296 0.02058012 0.00150451 ... 0.05208083 0.0149783  0.        ]]
+ACCURACY-------------------------------------------------------------
+Correctly classified instances: 114
+Incorrectly classified instances: 6
+Accuracy based on euclidean  with 5 Neighbors: 95.0 %
+---------------------------------------------------------------------
+[[0.         0.91651514 0.3        ... 3.37934905 1.02956301 0.71414284]
+ [0.91651514 0.         0.83066239 ... 2.64952826 0.6164414  0.99498744]
+ [0.3        0.83066239 0.         ... 3.13847097 0.83066239 0.42426407]
+ ...
+ [3.37934905 2.64952826 3.13847097 ... 0.         2.596151   2.9       ]
+ [1.02956301 0.6164414  0.83066239 ... 2.596151   0.         0.83066239]
+ [0.71414284 0.99498744 0.42426407 ... 2.9        0.83066239 0.        ]]
+[[1.         0.997864   0.99976849 ... 0.99468173 0.99916136 0.9980428 ]
+ [0.997864   1.         0.99653778 ... 0.9943927  0.99753348 0.99230886]
+ [0.99976849 0.99653778 1.         ... 0.99448171 0.99870808 0.99899436]
+ ...
+ [0.99468173 0.9943927  0.99448171 ... 1.         0.9901723  0.99395842]
+ [0.99916136 0.99753348 0.99870808 ... 0.9901723  1.         0.9957586 ]
+ [0.9980428  0.99230886 0.99899436 ... 0.99395842 0.9957586  1.        ]]
+[[0.         0.0118593  0.00067609 ... 0.04845606 0.00874453 0.00326296]
+ [0.0118593  0.         0.01241222 ... 0.01930713 0.00500777 0.02058012]
+ [0.00067609 0.01241222 0.         ... 0.04577437 0.00793488 0.00150451]
+ ...
+ [0.04845606 0.01930713 0.04577437 ... 0.         0.03561913 0.05208083]
+ [0.00874453 0.00500777 0.00793488 ... 0.03561913 0.         0.0149783 ]
+ [0.00326296 0.02058012 0.00150451 ... 0.05208083 0.0149783  0.        ]]
+ACCURACY-------------------------------------------------------------
+Correctly classified instances: 120
+Incorrectly classified instances: 0
+Accuracy based on cosine  with 5 Neighbors: 100.0 %
+---------------------------------------------------------------------
+[[0.         0.91651514 0.3        ... 3.37934905 1.02956301 0.71414284]
+ [0.91651514 0.         0.83066239 ... 2.64952826 0.6164414  0.99498744]
+ [0.3        0.83066239 0.         ... 3.13847097 0.83066239 0.42426407]
+ ...
+ [3.37934905 2.64952826 3.13847097 ... 0.         2.596151   2.9       ]
+ [1.02956301 0.6164414  0.83066239 ... 2.596151   0.         0.83066239]
+ [0.71414284 0.99498744 0.42426407 ... 2.9        0.83066239 0.        ]]
+[[1.         0.997864   0.99976849 ... 0.99468173 0.99916136 0.9980428 ]
+ [0.997864   1.         0.99653778 ... 0.9943927  0.99753348 0.99230886]
+ [0.99976849 0.99653778 1.         ... 0.99448171 0.99870808 0.99899436]
+ ...
+ [0.99468173 0.9943927  0.99448171 ... 1.         0.9901723  0.99395842]
+ [0.99916136 0.99753348 0.99870808 ... 0.9901723  1.         0.9957586 ]
+ [0.9980428  0.99230886 0.99899436 ... 0.99395842 0.9957586  1.        ]]
+[[0.         0.0118593  0.00067609 ... 0.04845606 0.00874453 0.00326296]
+ [0.0118593  0.         0.01241222 ... 0.01930713 0.00500777 0.02058012]
+ [0.00067609 0.01241222 0.         ... 0.04577437 0.00793488 0.00150451]
+ ...
+ [0.04845606 0.01930713 0.04577437 ... 0.         0.03561913 0.05208083]
+ [0.00874453 0.00500777 0.00793488 ... 0.03561913 0.         0.0149783 ]
+ [0.00326296 0.02058012 0.00150451 ... 0.05208083 0.0149783  0.        ]]
+ACCURACY-------------------------------------------------------------
+Correctly classified instances: 114
+Incorrectly classified instances: 6
+Accuracy based on euclidean  with 5 Neighbors: 95.0 %
+---------------------------------------------------------------------
 </pre>
 </div>
 </div>
@@ -13423,52 +13609,65 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Prediction-based-on-distances">Prediction based on distances<a class="anchor-link" href="#Prediction-based-on-distances">&#182;</a></h3>
+<h3 id="Accuracy-barcharts">Accuracy barcharts<a class="anchor-link" href="#Accuracy-barcharts">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[208]:</div>
+<div class="prompt input_prompt">In&nbsp;[283]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="n">Edistance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
 
-<span class="n">k</span> <span class="o">=</span> <span class="mi">9</span>
+    </div>
+</div>
+</div>
 
-<span class="c1">#generates empty arrays with rows equal to number of test rows</span>
-<span class="c1">#E_pred = np.zeros(rows)</span>
-<span class="c1">#C_pred = np.zeros(rows)</span>
-<span class="c1">#NE_pred = np.zeros(rows)</span>
-<span class="n">E_pred</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="c1">#E_pred = np.array(E_pred)</span>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[310]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># data to plot</span>
+<span class="n">n_groups</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">euclidean</span> <span class="o">=</span> <span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e3</span><span class="p">,</span> <span class="n">e5</span><span class="p">,</span> <span class="n">e7</span><span class="p">)</span>
+<span class="n">cosine</span> <span class="o">=</span> <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c3</span><span class="p">,</span> <span class="n">c5</span><span class="p">,</span> <span class="n">c7</span><span class="p">)</span>
+<span class="n">normalized_euclidean</span> <span class="o">=</span> <span class="p">(</span><span class="n">ne1</span><span class="p">,</span> <span class="n">ne3</span><span class="p">,</span> <span class="n">ne5</span><span class="p">,</span> <span class="n">ne7</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
-    <span class="c1">#print(NEdistance[i,:])</span>
-    <span class="n">E_y_indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">Edistance</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Edistance</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">E_y_indexes</span><span class="p">])</span>
-    <span class="c1">#print(E_y_indexes)</span>
-    <span class="c1">#C_y_indexes = np.argsort(Cdistance[i,:])</span>
-    <span class="c1">#NE_y_indexes = np.argsort(NEdistance[i,:])</span>
-    <span class="c1">#print(&#39;HELO&#39;,Edistance[77])</span>
-    <span class="n">closest</span> <span class="o">=</span> <span class="n">E_y_indexes</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
-    <span class="n">closest_y</span> <span class="o">=</span> <span class="n">y_develop</span><span class="p">[</span><span class="n">E_y_indexes</span><span class="p">[:</span><span class="n">k</span><span class="p">]]</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">closest_y</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">closest</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">closest_y</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">E_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="c1">#E_pred  = np.argmax(np.bincount(closest_y))</span>
+<span class="c1"># create plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_groups</span><span class="p">)</span>
+<span class="n">bar_width</span> <span class="o">=</span> <span class="mf">0.20</span>
+<span class="n">opacity</span> <span class="o">=</span> <span class="mf">0.8</span>
+
+<span class="n">rects1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">euclidean</span><span class="p">,</span> <span class="n">bar_width</span><span class="p">,</span>
+<span class="n">alpha</span><span class="o">=</span><span class="n">opacity</span><span class="p">,</span>
+<span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+<span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euclidean&#39;</span><span class="p">)</span>
+
+<span class="n">rects2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">cosine</span><span class="p">,</span> <span class="n">bar_width</span><span class="p">,</span>
+<span class="n">alpha</span><span class="o">=</span><span class="n">opacity</span><span class="p">,</span>
+<span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span>
+<span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cosine&#39;</span><span class="p">)</span>
+
+<span class="n">rects3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="n">bar_width</span> <span class="o">+</span> <span class="n">bar_width</span><span class="p">,</span> <span class="n">normalized_euclidean</span><span class="p">,</span> <span class="n">bar_width</span><span class="p">,</span>
+<span class="n">alpha</span><span class="o">=</span><span class="n">opacity</span><span class="p">,</span>
+<span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+<span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normalized Euclidean&#39;</span><span class="p">)</span>
 
 
-<span class="c1">#print(E_pred)</span>
-<span class="c1">#print(closest_y)    </span>
-<span class="n">num_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">E_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_correct</span><span class="p">)</span><span class="o">/</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Correctly classified instances&#39;</span><span class="p">,</span><span class="n">num_correct</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Incorrectly classified instances&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">E_pred</span><span class="p">)</span><span class="o">-</span><span class="n">num_correct</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy based on Euclidean Distance with 7 Neighbors&quot;</span><span class="p">,</span><span class="n">accuracy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;K neighbors&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="n">bar_width</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13484,789 +13683,14 @@ div#notebook {
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[0.1        0.14142136 0.2236068  0.24494897 0.3        0.41231056
- 0.41231056 0.42426407 0.42426407 0.4472136  0.45825757 0.46904158
- 0.48989795 0.5        0.50990195 0.50990195 0.50990195 0.51961524
- 0.53851648 0.53851648 0.57445626 0.57445626 0.58309519 0.6164414
- 0.6164414  0.64031242 0.64807407 0.67082039 0.67082039 0.67082039
- 0.678233   0.678233   0.678233   0.7        0.7        0.7
- 0.71414284 0.72111026 0.73484692 0.75498344 0.78102497 0.78740079
- 0.80622577 0.87749644 0.90553851 0.91651514 0.92195445 0.92736185
- 0.92736185 0.92736185 0.96953597 0.98488578 1.04880885 1.08166538
- 1.1        1.1045361  1.12249722 1.15325626 1.2083046  1.2328828
- 1.25299641 1.26885775 1.26885775 1.28062485 1.34164079 1.40712473
- 1.56843871 1.57480157 1.74928557 1.81383571 1.8493242  1.88679623
- 1.91049732 1.95192213 1.99499373 2.00249844 2.13541565 2.42899156
- 2.56124969 2.74954542 3.13687743 3.13847097 3.14483704 3.20156212
- 3.27108545 3.29545141 3.36303434 3.39705755 3.39705755 3.40587727
- 3.40734501 3.41467422 3.4190642  3.43074336 3.43074336 3.43656806
- 3.47131099 3.47275107 3.51425668 3.51710108 3.51852242 3.51852242
- 3.54682957 3.56931366 3.56931366 3.6        3.63455637 3.64142829
- 3.64142829 3.64691651 3.67423461 3.69052842 3.6986484  3.71214224
- 3.71348893 3.79077828 3.80657326 3.82230297 4.02988834 4.07185461]
-[79 81 90 42 30 73 80 62 39]
-[&#39;Iris-versicolor&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39;]
-Iris-versicolor
-[0.31622777 0.37416574 0.45825757 0.5        0.50990195 0.53851648
- 0.54772256 0.60827625 0.6164414  0.6164414  0.63245553 0.63245553
- 0.64031242 0.70710678 0.73484692 0.73484692 0.74833148 0.76811457
- 0.78102497 0.78740079 0.83066239 0.86023253 0.91104336 0.98994949
- 1.00498756 1.04880885 1.06770783 1.08166538 1.08166538 1.17046999
- 1.2083046  1.2328828  1.28840987 1.3190906  1.3190906  1.48660687
- 1.57797338 1.60934769 1.72046505 1.93390796 1.96214169 2.16333077
- 2.27156334 2.30217289 2.44948974 2.50998008 2.53179778 2.53179778
- 2.53968502 2.596151   2.6        2.62488095 2.63248932 2.64007576
- 2.64196896 2.64952826 2.65706605 2.73313007 2.75317998 2.79642629
- 2.81780056 2.83901391 2.84429253 2.91376046 2.92745623 2.94788059
- 2.9563491  2.96141858 2.96310648 3.03479818 3.14642654 3.15753068
- 3.1638584  3.16701752 3.1701735  3.18904374 3.21558704 3.23882695
- 3.29545141 3.32415403 3.35410197 3.43656806 3.48855271 3.49857114
- 3.50570963 3.539774   3.54541958 3.54682957 3.57491259 3.57491259
- 3.58608422 3.59444015 3.59722115 3.67831483 3.6796739  3.71618084
- 3.75499667 3.82883794 3.92683078 3.95221457 3.96484552 3.9661064
- 4.03608721 4.04722127 4.08656335 4.1        4.15331193 4.15331193
- 4.21900462 4.37035468 4.4384682  4.49888875 4.59347363 4.65295605
- 4.82182538 4.89897949 4.952777   5.31601354 5.38516481 5.47722558]
-[ 48  14  94 114  13  41 117  84   7]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.28284271 0.50990195 0.78102497 0.87749644 0.89442719 1.19163753
- 1.21655251 1.2328828  1.27279221 1.37477271 1.56204994 1.71172428
- 1.71172428 1.71172428 1.71464282 1.77200451 1.80554701 1.88679623
- 1.93390796 1.97484177 2.06155281 2.06397674 2.07123152 2.11896201
- 2.14709106 2.18403297 2.21133444 2.26715681 2.28910463 2.36220236
- 2.38537209 2.44335834 2.44335834 2.46779254 2.47790234 2.56709953
- 2.57681975 2.58069758 2.58843582 2.60192237 2.61916017 2.61916017
- 2.62488095 2.73130006 2.73678644 2.73861279 2.76043475 2.76043475
- 2.79463772 2.83019434 2.83019434 2.88097206 2.90688837 2.92232784
- 3.01662063 3.04795013 3.21403174 3.26955654 3.318132   3.33016516
- 3.34813381 3.37342556 3.38378486 3.38526218 3.38526218 3.42198773
- 3.44673759 3.46698716 3.52278299 3.64142829 3.65239647 3.68917335
- 3.80657326 3.88844442 3.906405   3.94461658 4.3829214  4.50998891
- 4.56508488 4.68828327 5.74195089 5.76194412 5.83266663 5.83523778
- 5.85576639 5.96154342 5.97159945 6.01082357 6.0158125  6.01830541
- 6.02411819 6.03324125 6.04648658 6.09015599 6.09343909 6.09425959
- 6.09425959 6.10327781 6.10327781 6.13595958 6.1367744  6.14979674
- 6.14979674 6.16684684 6.16927873 6.18465844 6.19193023 6.20805928
- 6.24659907 6.28171951 6.33561362 6.341924   6.36396103 6.38122245
- 6.4210591  6.45677938 6.51229606 6.52763357 6.7349833  6.73943618]
-[ 24  21  96 106  64  69  37 119 101]
-[&#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.17320508 0.2236068  0.28284271 0.31622777 0.33166248 0.37416574
- 0.41231056 0.42426407 0.43588989 0.43588989 0.4472136  0.48989795
- 0.5        0.5        0.50990195 0.51961524 0.51961524 0.53851648
- 0.53851648 0.57445626 0.57445626 0.59160798 0.60827625 0.60827625
- 0.6164414  0.6164414  0.6164414  0.63245553 0.64031242 0.64031242
- 0.66332496 0.66332496 0.678233   0.678233   0.70710678 0.70710678
- 0.73484692 0.75498344 0.81240384 0.86023253 0.86023253 0.8660254
- 0.8660254  0.91651514 0.92736185 0.94339811 0.99498744 1.00498756
- 1.0198039  1.04880885 1.06301458 1.06770783 1.08627805 1.09544512
- 1.12249722 1.14017543 1.14455231 1.17046999 1.24498996 1.28452326
- 1.28840987 1.3190906  1.44568323 1.44568323 1.52970585 1.58113883
- 1.67332005 1.67630546 1.70293864 1.77200451 1.78325545 1.79443584
- 1.94422221 2.11896201 2.12837967 2.22036033 2.33666429 2.64196896
- 2.78208555 2.89482297 2.90688837 2.90688837 2.92232784 2.96816442
- 3.03315018 3.06920185 3.12569992 3.16227766 3.16227766 3.16701752
- 3.17175031 3.17804972 3.18276609 3.20156212 3.20156212 3.20156212
- 3.23264598 3.24037035 3.28176782 3.28329103 3.28329103 3.29089653
- 3.31662479 3.3286634  3.33166625 3.36749165 3.39852909 3.40587727
- 3.40587727 3.41467422 3.43802269 3.46121366 3.46698716 3.48425028
- 3.48855271 3.57910603 3.58468967 3.59026461 3.80263067 3.8340579 ]
-[90 79 39 42 86 81 22 20 36]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39;]
-Iris-versicolor
-[0.3        0.3        0.33166248 0.33166248 0.36055513 0.45825757
- 0.48989795 0.50990195 0.51961524 0.53851648 0.58309519 0.59160798
- 0.6        0.6164414  0.64031242 0.64807407 0.64807407 0.678233
- 0.71414284 0.72801099 0.75498344 0.75498344 0.78740079 0.78740079
- 0.81240384 0.82462113 0.86023253 0.86023253 0.86023253 0.9486833
- 0.96953597 0.98488578 0.98994949 1.0198039  1.03440804 1.03440804
- 1.03923048 1.04403065 1.04403065 1.04880885 1.04880885 1.06301458
- 1.08166538 1.09544512 1.1        1.11803399 1.15758369 1.15758369
- 1.20415946 1.22474487 1.25299641 1.25698051 1.26885775 1.28062485
- 1.29614814 1.30384048 1.32664992 1.3453624  1.37477271 1.39283883
- 1.40356688 1.43178211 1.44568323 1.55563492 1.57797338 1.58429795
- 1.59373775 1.60623784 1.6881943  1.71464282 1.74928557 1.83847763
- 1.94679223 1.97989899 2.1023796  2.32808935 2.36008474 2.39582971
- 2.45356883 2.49399278 3.45398321 3.50713558 3.57071421 3.57351368
- 3.57491259 3.67695526 3.69594372 3.73363094 3.73496988 3.73764632
- 3.75898923 3.76031914 3.80525952 3.80657326 3.81968585 3.81968585
- 3.81968585 3.82099463 3.82883794 3.86522962 3.86522962 3.87943295
- 3.89101529 3.9        3.9        3.92428337 3.92683078 3.92937654
- 3.97743636 3.99749922 4.04474968 4.06939799 4.0938979  4.10121933
- 4.16293166 4.21781934 4.24852916 4.2626283  4.46318272 4.46989933]
-[ 54  92  12 105  80  82  18   2  30]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-virginica&#39;]
-Iris-versicolor
-[0.2        0.2236068  0.2236068  0.3        0.3        0.31622777
- 0.33166248 0.33166248 0.37416574 0.4        0.42426407 0.42426407
- 0.42426407 0.45825757 0.45825757 0.50990195 0.53851648 0.53851648
- 0.53851648 0.57445626 0.58309519 0.58309519 0.60827625 0.64031242
- 0.64807407 0.72111026 0.72801099 0.75498344 0.78102497 0.80622577
- 0.81240384 0.83066239 0.85440037 0.96436508 1.03923048 1.04403065
- 1.09544512 1.12249722 1.23693169 1.43527001 1.77482393 2.11896201
- 2.14709106 2.17485632 2.41867732 2.47386338 2.50798724 2.50998008
- 2.63818119 2.65518361 2.65894716 2.66458252 2.68514432 2.72213152
- 2.73313007 2.74590604 2.76224546 2.77488739 2.79642629 2.83725219
- 2.95465734 3.00998339 3.01496269 3.02654919 3.03315018 3.05941171
- 3.1638584  3.1685959  3.17175031 3.19217794 3.20312348 3.22955105
- 3.31360831 3.3436507  3.3436507  3.36154726 3.37786915 3.44818793
- 3.45832329 3.46698716 3.58329457 3.58608422 3.62629287 3.63042697
- 3.65650106 3.67151195 3.68917335 3.68917335 3.71618084 3.72424489
- 3.72827038 3.74833296 3.75499667 3.75898923 3.88072158 3.93446311
- 3.98120585 3.99124041 4.13400532 4.1677332  4.18927201 4.19761837
- 4.22729228 4.23556372 4.25675933 4.31161223 4.39772669 4.39772669
- 4.46430286 4.59020697 4.67867503 4.73392015 4.85077313 4.94368284
- 5.05173238 5.15848815 5.18652099 5.56866232 5.7        5.71751694]
-[114   7  26  14  35  94  23  71  33]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.33166248 0.50990195 0.51961524 0.51961524 0.53851648 0.53851648
- 0.54772256 0.57445626 0.57445626 0.60827625 0.6164414  0.63245553
- 0.64807407 0.678233   0.72801099 0.86023253 0.87749644 0.9
- 0.9        0.90553851 0.91104336 0.92195445 0.92736185 1.06301458
- 1.08627805 1.1045361  1.12249722 1.2083046  1.2083046  1.22065556
- 1.24096736 1.26885775 1.27279221 1.28452326 1.30384048 1.3453624
- 1.34907376 1.37477271 1.41421356 1.45945195 1.48996644 1.51657509
- 1.52643375 1.52643375 1.52970585 1.53297097 1.56524758 1.56843871
- 1.61554944 1.61554944 1.6583124  1.78325545 1.80554701 1.83847763
- 1.8493242  1.88944436 1.90262976 1.94422221 1.96214169 1.97484177
- 1.98746069 2.00499377 2.07123152 2.08326667 2.0904545  2.10475652
- 2.11896201 2.15638587 2.1725561  2.17715411 2.21133444 2.21585198
- 2.22036033 2.22261108 2.22261108 2.22934968 2.24053565 2.24944438
- 2.24944438 2.25610283 2.26715681 2.29128785 2.29128785 2.30217289
- 2.310844   2.31516738 2.33452351 2.33452351 2.33452351 2.38537209
- 2.40416306 2.40416306 2.43515913 2.45153013 2.45153013 2.46779254
- 2.48797106 2.48797106 2.49198716 2.50599282 2.51594913 2.53179778
- 2.55734237 2.58263431 2.596151   2.61151297 2.61916017 2.64764046
- 2.72213152 2.74772633 2.81957444 2.87228132 2.9        3.04959014
- 3.082207   3.19061123 3.26649659 3.60693776 3.74566416 3.8509739 ]
-[ 88  95 108  15  89 118  53  25  65]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39;]
-Iris-versicolor
-[0.2        0.24494897 0.3        0.42426407 0.42426407 0.42426407
- 0.4472136  0.53851648 0.54772256 0.57445626 0.60827625 0.6164414
- 0.64031242 0.66332496 0.66332496 0.67082039 0.67082039 0.70710678
- 0.72801099 0.74833148 0.76811457 0.76811457 0.78740079 0.80622577
- 0.81853528 0.81853528 0.83066239 0.83666003 0.85440037 0.87177979
- 0.91651514 0.9486833  0.9539392  0.9539392  0.96436508 0.98488578
- 1.00498756 1.04880885 1.06770783 1.08166538 1.1        1.12249722
- 1.14017543 1.15758369 1.15758369 1.17046999 1.17046999 1.22065556
- 1.27671453 1.28062485 1.28452326 1.3453624  1.34907376 1.34907376
- 1.39283883 1.43527001 1.50332964 1.5132746  1.53948043 1.59059737
- 1.61864141 1.63095064 1.63401346 1.64316767 1.64316767 1.6583124
- 1.68226038 1.81383571 1.87882942 1.92093727 1.95192213 2.03469899
- 2.06155281 2.1        2.11896201 2.1725561  2.71661554 2.73678644
- 2.78028775 2.83019434 3.72827038 3.73764632 3.80131556 3.83927076
- 3.85227206 3.94588393 3.98371686 3.98497177 3.99749922 4.0012498
- 4.00249922 4.01123422 4.03608721 4.06939799 4.08166633 4.08289113
- 4.09267639 4.10487515 4.10609303 4.11825206 4.11825206 4.13400532
- 4.13400532 4.15090352 4.16293166 4.16413256 4.18927201 4.20713679
- 4.26731766 4.27200187 4.33935479 4.35775171 4.36692111 4.39203825
- 4.46989933 4.54972527 4.54972527 4.56508488 4.72757866 4.77179212]
-[105  54  85  82  87  76  12 103  83]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.17320508 0.50990195 0.53851648 0.53851648 0.59160798 0.64807407
- 0.67082039 0.678233   0.72801099 0.73484692 0.75498344 0.75498344
- 0.75498344 0.76811457 0.78740079 0.80622577 0.81240384 0.81240384
- 0.81240384 0.83666003 0.85440037 0.8660254  0.87749644 0.87749644
- 0.87749644 0.87749644 0.9        0.90553851 0.91104336 0.91104336
- 0.93808315 0.93808315 0.96436508 0.98994949 1.         1.00995049
- 1.0198039  1.03440804 1.04403065 1.04880885 1.06770783 1.07703296
- 1.08166538 1.08627805 1.1045361  1.13137085 1.17473401 1.18743421
- 1.2083046  1.21655251 1.26885775 1.29614814 1.29614814 1.30766968
- 1.31529464 1.33416641 1.36014705 1.41421356 1.4525839  1.5
- 1.50665192 1.57480157 1.63095064 1.7        1.70293864 1.70293864
- 1.71172428 1.78044938 1.82482876 1.84661853 1.8627936  1.88414437
- 2.06155281 2.0880613  2.22261108 2.33452351 2.34946802 2.64764046
- 2.72946881 3.10644491 3.14960315 3.18747549 3.20312348 3.23882695
- 3.24499615 3.37194306 3.39116499 3.39116499 3.39705755 3.41320963
- 3.4190642  3.43656806 3.44673759 3.44818793 3.45543051 3.47131099
- 3.47275107 3.48998567 3.50142828 3.51710108 3.52987252 3.53694784
- 3.53694784 3.60693776 3.62491379 3.62904946 3.65102725 3.65239647
- 3.65650106 3.67287353 3.68917335 3.68917335 3.71079506 3.75366488
- 3.75499667 3.75765885 3.78021163 3.80525952 3.97617907 4.09511905]
-[110  73  44  68   5  30  81  80  39]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39;]
-Iris-versicolor
-[0.14142136 0.2        0.24494897 0.33166248 0.36055513 0.37416574
- 0.37416574 0.41231056 0.42426407 0.43588989 0.43588989 0.43588989
- 0.46904158 0.50990195 0.54772256 0.59160798 0.6        0.6
- 0.7        0.74833148 0.78102497 0.81240384 0.81853528 0.87749644
- 0.94339811 0.96953597 0.98488578 0.98994949 0.98994949 0.99498744
- 1.02469508 1.03440804 1.07703296 1.08166538 1.1        1.1045361
- 1.11803399 1.12249722 1.12249722 1.13578167 1.13578167 1.15758369
- 1.2        1.2        1.20415946 1.21655251 1.22474487 1.22474487
- 1.24096736 1.26885775 1.30384048 1.4525839  1.50665192 1.52315462
- 1.52643375 1.53948043 1.60312195 1.70293864 1.72916165 1.75499288
- 1.77200451 1.78325545 1.90262976 1.90525589 1.91049732 1.96468827
- 2.1        2.1        2.16794834 2.24053565 2.3430749  2.3430749
- 2.37907545 2.38537209 2.38746728 2.40416306 2.45356883 2.53771551
- 2.56320112 2.57293607 2.59422435 2.59422435 2.596151   2.6
- 2.60384331 2.62488095 2.63058929 2.64386081 2.64764046 2.66458252
- 2.67394839 2.6925824  2.6925824  2.71293199 2.71661554 2.71661554
- 2.72213152 2.75862284 2.77488739 2.81780056 2.83548938 2.83725219
- 2.84253408 2.86006993 2.86006993 2.86705424 2.87228132 2.89136646
- 2.92232784 2.93087018 2.93428015 2.94278779 2.96816442 2.99499583
- 2.99666481 3.19061123 3.25883415 3.26496554 3.38526218 3.55808937]
-[118  25 108 115  34  20  65  95  88]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39;]
-Iris-versicolor
-[0.2236068  0.2236068  0.3        0.42426407 0.4472136  0.4472136
- 0.45825757 0.45825757 0.46904158 0.50990195 0.53851648 0.54772256
- 0.54772256 0.57445626 0.57445626 0.58309519 0.59160798 0.60827625
- 0.6164414  0.6164414  0.63245553 0.64031242 0.64031242 0.64031242
- 0.64031242 0.64031242 0.67082039 0.67082039 0.70710678 0.72111026
- 0.73484692 0.73484692 0.73484692 0.75498344 0.80622577 0.80622577
- 0.86023253 0.86023253 0.86023253 0.87749644 0.90553851 0.92736185
- 1.00498756 1.00995049 1.0198039  1.06770783 1.1        1.1
- 1.12249722 1.14017543 1.15758369 1.22065556 1.23693169 1.24096736
- 1.26885775 1.28452326 1.3190906  1.34164079 1.36014705 1.36014705
- 1.36747943 1.40356688 1.43527001 1.47309199 1.56843871 1.57480157
- 1.64316767 1.73781472 1.82482876 1.83847763 1.84661853 1.87082869
- 1.88679623 1.8973666  2.03960781 2.0880613  2.5        2.50998008
- 2.53771551 2.61916017 3.54400903 3.57910603 3.62904946 3.64142829
- 3.67831483 3.79736751 3.81313519 3.81706694 3.81968585 3.82753184
- 3.83927076 3.86781592 3.87814389 3.89486842 3.89615195 3.90512484
- 3.92683078 3.93192065 3.9408121  3.9408121  3.96106046 3.96736688
- 3.96736688 3.99374511 4.01248053 4.01746189 4.03608721 4.04227659
- 4.07185461 4.09633983 4.15932687 4.16413256 4.17851648 4.20475921
- 4.26497362 4.34165867 4.34626276 4.38748219 4.53651849 4.56946386]
-[ 83  87  54  17 109  16  12 105  46]
-[&#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.1        0.17320508 0.17320508 0.24494897 0.24494897 0.28284271
- 0.28284271 0.34641016 0.36055513 0.41231056 0.41231056 0.4472136
- 0.4472136  0.45825757 0.45825757 0.50990195 0.51961524 0.54772256
- 0.56568542 0.57445626 0.58309519 0.58309519 0.58309519 0.63245553
- 0.64031242 0.64807407 0.74833148 0.76811457 0.76811457 0.78102497
- 0.8660254  0.87749644 0.92736185 0.98994949 1.08627805 1.12249722
- 1.17473401 1.3892444  1.42828569 1.6673332  1.70293864 1.99499373
- 2.03469899 2.3194827  2.33452351 2.47790234 2.54950976 2.57099203
- 2.73861279 2.78208555 2.81424946 2.81602557 2.85306852 2.89482297
- 2.91376046 2.92745623 2.94108823 2.94278779 2.97321375 3.00832179
- 3.10644491 3.14165561 3.15753068 3.20156212 3.22180074 3.31360831
- 3.34813381 3.42636834 3.45398321 3.49428104 3.49857114 3.548239
- 3.55246393 3.57910603 3.59583092 3.60555128 3.62904946 3.67287353
- 3.68239053 3.74432905 3.80919939 3.81968585 3.83796821 3.84057287
- 3.84447656 3.84447656 3.86005181 3.87814389 3.90128184 3.93192065
- 3.97114593 3.99749922 4.07062649 4.08289113 4.16293166 4.22018957
- 4.22610932 4.25675933 4.40227214 4.41474801 4.4384682  4.4609416
- 4.47772264 4.51884941 4.56179789 4.61085675 4.71062629 4.71062629
- 4.78957201 4.84767986 5.01198563 5.05371151 5.19230199 5.31130869
- 5.37494186 5.50181788 5.52268051 5.90592922 6.0448325  6.09425959]
-[104  55 102  78  70  32  38  52  51]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.3        0.33166248 0.34641016 0.36055513 0.41231056 0.41231056
- 0.41231056 0.42426407 0.45825757 0.48989795 0.5        0.51961524
- 0.54772256 0.54772256 0.57445626 0.58309519 0.58309519 0.59160798
- 0.59160798 0.6        0.7        0.70710678 0.74833148 0.74833148
- 0.76811457 0.76811457 0.78102497 0.78740079 0.85440037 0.91104336
- 0.92736185 0.94339811 0.9539392  0.9539392  1.00498756 1.14017543
- 1.2083046  1.25698051 1.31529464 1.56204994 2.01246118 2.36008474
- 2.38537209 2.38537209 2.64007576 2.70924344 2.73130006 2.73678644
- 2.84604989 2.85306852 2.8618176  2.87923601 2.89309523 2.92745623
- 2.94957624 2.95465734 2.96816442 2.96984848 3.00998339 3.03809151
- 3.13847097 3.18904374 3.22800248 3.24037035 3.24037035 3.24037035
- 3.32716095 3.33766385 3.34813381 3.39116499 3.40587727 3.4190642
- 3.50428309 3.51852242 3.52987252 3.53553391 3.57071421 3.62767143
- 3.6373067  3.66878727 3.72827038 3.77359245 3.82099463 3.83796821
- 3.85356977 3.87556448 3.88329757 3.89486842 3.89486842 3.91535439
- 3.91535439 3.92173431 3.94588393 3.95347948 4.05709256 4.11096096
- 4.16052881 4.17731971 4.31393092 4.34626276 4.35086198 4.37492857
- 4.41474801 4.42492938 4.43395986 4.48218697 4.56508488 4.56508488
- 4.62709412 4.77179212 4.83632092 4.89591667 5.00699511 5.09313263
- 5.20960651 5.30377224 5.34789678 5.72276157 5.83866423 5.87281874]
-[ 14  26  94   7  13  23  71 114  35]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.         0.         0.14142136 0.17320508 0.24494897 0.3
- 0.3        0.31622777 0.33166248 0.33166248 0.33166248 0.34641016
- 0.36055513 0.42426407 0.43588989 0.43588989 0.45825757 0.45825757
- 0.45825757 0.5        0.50990195 0.51961524 0.54772256 0.54772256
- 0.54772256 0.6164414  0.63245553 0.72111026 0.72801099 0.73484692
- 0.76811457 0.78102497 0.83066239 0.91651514 0.96436508 0.96436508
- 1.04403065 1.25698051 1.30766968 1.52643375 1.62788206 1.93132079
- 1.97230829 2.21133444 2.28473193 2.38537209 2.45153013 2.47790234
- 2.64007576 2.6925824  2.69443872 2.70370117 2.73678644 2.78028775
- 2.78926514 2.81780056 2.81780056 2.82311884 2.87576077 2.88097206
- 3.00333148 3.04302481 3.05941171 3.082207   3.09354166 3.18276609
- 3.20936131 3.318132   3.32565783 3.35559235 3.36303434 3.41320963
- 3.42344855 3.44963766 3.47994253 3.48425028 3.50142828 3.54118624
- 3.55949435 3.64005494 3.67151195 3.6986484  3.72290209 3.7255872
- 3.73229152 3.73229152 3.73764632 3.77756535 3.78549865 3.81706694
- 3.82883794 3.87427413 3.93700394 3.94461658 4.03236903 4.08656335
- 4.10487515 4.12189277 4.27200187 4.30116263 4.30929229 4.33704969
- 4.34281015 4.3829214  4.42944692 4.47772264 4.57383865 4.57383865
- 4.65295605 4.71699057 4.87749936 4.92036584 5.05470078 5.16720427
- 5.24404424 5.37028863 5.3860932  5.77148161 5.91354378 5.94726828]
-[102  55 104  32  51  78  70  57  52]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.1        0.1        0.2236068  0.24494897 0.31622777 0.31622777
- 0.31622777 0.31622777 0.31622777 0.33166248 0.37416574 0.37416574
- 0.37416574 0.4        0.4        0.41231056 0.42426407 0.50990195
- 0.51961524 0.53851648 0.53851648 0.57445626 0.64031242 0.64807407
- 0.678233   0.72801099 0.72801099 0.73484692 0.74833148 0.78740079
- 0.78740079 0.81240384 0.83066239 0.84852814 0.86023253 0.94339811
- 1.08166538 1.14455231 1.2        1.62788206 1.98494332 2.28910463
- 2.34520788 2.40831892 2.63818119 2.64196896 2.6925824  2.72213152
- 2.76586334 2.84604989 2.84956137 2.86006993 2.87228132 2.87923601
- 2.90860791 2.90860791 2.92745623 2.94278779 2.95803989 3.10161248
- 3.11929479 3.14006369 3.14483704 3.15753068 3.1638584  3.21558704
- 3.27566787 3.32415403 3.35410197 3.36154726 3.38526218 3.44818793
- 3.47131099 3.47850543 3.51283361 3.54541958 3.55949435 3.57910603
- 3.61939221 3.64554523 3.76961536 3.76961536 3.77359245 3.78153408
- 3.80131556 3.82883794 3.82883794 3.83275358 3.8704005  3.91024296
- 3.92173431 3.92428337 3.9306488  3.95221457 4.03608721 4.0607881
- 4.07185461 4.16413256 4.26380112 4.29068759 4.31277173 4.35201103
- 4.36577599 4.38748219 4.41927596 4.45645599 4.52216762 4.52216762
- 4.60868745 4.68401537 4.85180379 4.89897949 5.0019996  5.06063237
- 5.23927476 5.34415569 5.3563047  5.73585216 5.81377674 5.89915248]
-[98 84 94  8 23 71  7  9 14]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.24494897 0.37416574 0.37416574 0.42426407 0.43588989 0.4472136
- 0.4472136  0.50990195 0.51961524 0.51961524 0.53851648 0.54772256
- 0.57445626 0.57445626 0.58309519 0.6164414  0.6164414  0.63245553
- 0.64031242 0.64031242 0.66332496 0.70710678 0.70710678 0.71414284
- 0.78102497 0.78740079 0.81240384 0.82462113 0.83066239 0.83666003
- 0.85440037 0.85440037 0.87749644 0.87749644 0.87749644 0.87749644
- 0.88317609 0.88317609 0.90553851 0.94339811 0.96953597 0.96953597
- 0.98488578 0.98488578 0.98488578 0.98994949 1.00498756 1.04403065
- 1.04403065 1.04880885 1.07703296 1.07703296 1.1045361  1.10905365
- 1.15758369 1.17046999 1.17898261 1.3        1.33041347 1.33790882
- 1.4525839  1.45945195 1.47309199 1.48660687 1.50332964 1.5132746
- 1.56524758 1.58429795 1.62480768 1.69115345 1.8493242  1.92873015
- 2.00249844 2.15638587 2.17485632 2.19544984 2.22934968 2.32163735
- 2.49198716 2.49198716 3.08706981 3.13368792 3.17804972 3.18904374
- 3.23109888 3.34813381 3.36154726 3.36749165 3.37490741 3.3763886
- 3.38969025 3.4190642  3.43656806 3.44093011 3.44528664 3.45543051
- 3.47706773 3.47994253 3.49857114 3.49857114 3.51283361 3.51710108
- 3.51710108 3.54682957 3.55949435 3.56791255 3.59722115 3.60416426
- 3.62904946 3.64554523 3.71348893 3.71348893 3.73496988 3.75898923
- 3.82883794 3.89615195 3.906405   3.97492138 4.08289113 4.12916456]
-[ 6 11 90 59 42 79 12 92 18]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39;]
-Iris-versicolor
-[0.3        0.3        0.3        0.33166248 0.37416574 0.37416574
- 0.41231056 0.42426407 0.45825757 0.48989795 0.54772256 0.57445626
- 0.59160798 0.6        0.6        0.60827625 0.64031242 0.7
- 0.75498344 0.75498344 0.82462113 0.91104336 0.92195445 0.9486833
- 0.96436508 0.96953597 0.96953597 0.96953597 0.98994949 1.00995049
- 1.03440804 1.03440804 1.04880885 1.06301458 1.11803399 1.12249722
- 1.17473401 1.18321596 1.2083046  1.21655251 1.22474487 1.23693169
- 1.23693169 1.23693169 1.26491106 1.28840987 1.3190906  1.36014705
- 1.40356688 1.41774469 1.44913767 1.50665192 1.5132746  1.53297097
- 1.57797338 1.58113883 1.7        1.70293864 1.70880075 1.76635217
- 1.78885438 1.79164729 1.8547237  1.86010752 1.8627936  1.88944436
- 1.92353841 1.97230829 2.03224014 2.11896201 2.12132034 2.17485632
- 2.31516738 2.32163735 2.40208243 2.46779254 2.92232784 2.99833287
- 3.02820079 3.1701735  4.22018957 4.26380112 4.27317212 4.33935479
- 4.34281015 4.45982062 4.48776113 4.49332839 4.49888875 4.51884941
- 4.51995575 4.53982379 4.54862617 4.57165178 4.57602448 4.58911756
- 4.58911756 4.592385   4.60543158 4.62493243 4.64435141 4.64435141
- 4.65832588 4.66904701 4.68187996 4.68721666 4.70212718 4.71911009
- 4.75920161 4.76969601 4.79687398 4.80936586 4.84252001 4.85077313
- 4.87647414 4.96588361 4.96990946 4.97393205 5.1894123  5.19711458]
-[109 107 103  17 100  97  77  76  61]
-[&#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.14142136 0.17320508 0.24494897 0.24494897 0.24494897 0.34641016
- 0.36055513 0.37416574 0.42426407 0.4472136  0.50990195 0.50990195
- 0.51961524 0.53851648 0.59160798 0.59160798 0.65574385 0.78102497
- 0.80622577 0.82462113 0.87177979 0.87749644 0.88317609 0.92195445
- 0.92736185 0.9797959  0.99498744 1.02469508 1.02956301 1.04403065
- 1.1045361  1.1045361  1.12249722 1.15325626 1.17898261 1.17898261
- 1.2083046  1.22065556 1.22065556 1.22474487 1.2328828  1.2328828
- 1.23693169 1.25299641 1.28062485 1.28452326 1.30384048 1.33416641
- 1.34907376 1.42126704 1.48660687 1.62480768 1.63401346 1.6583124
- 1.74642492 1.75783958 1.75783958 1.77482393 1.8493242  1.88148877
- 1.88679623 1.90262976 2.04694895 2.06155281 2.07364414 2.11187121
- 2.25610283 2.25610283 2.32808935 2.33452351 2.35372046 2.38537209
- 2.39374184 2.42899156 2.43721152 2.53377189 2.54950976 2.57099203
- 2.57099203 2.57875939 2.596151   2.61151297 2.61533937 2.63058929
- 2.63248932 2.64386081 2.66833281 2.68700577 2.68886593 2.69072481
- 2.6925824  2.7        2.72946881 2.73130006 2.73861279 2.73861279
- 2.78208555 2.79642629 2.80178515 2.83019434 2.83901391 2.83901391
- 2.84956137 2.85306852 2.85832119 2.90688837 2.91204396 2.93428015
- 2.94788059 2.95972972 2.96816442 3.02489669 3.06267857 3.082207
- 3.09515751 3.12729915 3.25883415 3.39705755 3.51283361 3.73363094]
-[ 65  53  15  47 118  25  34 108  88]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39;]
-Iris-versicolor
-[0.2236068  0.3        0.31622777 0.33166248 0.36055513 0.36055513
- 0.4        0.41231056 0.41231056 0.42426407 0.45825757 0.45825757
- 0.45825757 0.46904158 0.53851648 0.54772256 0.54772256 0.58309519
- 0.58309519 0.60827625 0.6164414  0.6164414  0.6164414  0.64031242
- 0.66332496 0.67082039 0.678233   0.72801099 0.73484692 0.73484692
- 0.78102497 0.78740079 0.78740079 0.80622577 0.80622577 0.83066239
- 0.83666003 0.83666003 0.83666003 0.84852814 0.85440037 0.91104336
- 0.91651514 0.92736185 1.0198039  1.04880885 1.06301458 1.06770783
- 1.08166538 1.13578167 1.13578167 1.18743421 1.19163753 1.25698051
- 1.25698051 1.29614814 1.3        1.37477271 1.3892444  1.45945195
- 1.47648231 1.49666295 1.5        1.51657509 1.52970585 1.64012195
- 1.64012195 1.64316767 1.69115345 1.74355958 1.98997487 1.99499373
- 2.15870331 2.33452351 2.33452351 2.41039416 2.56904652 2.81602557
- 2.83901391 2.84956137 2.87923601 2.90688837 2.97321375 2.98998328
- 3.02324329 3.06431069 3.09515751 3.11769145 3.11929479 3.11929479
- 3.12089731 3.12569992 3.13687743 3.13847097 3.14642654 3.15753068
- 3.18904374 3.19687347 3.20780299 3.20936131 3.21714159 3.23419233
- 3.23419233 3.27719392 3.30756708 3.31360831 3.3436507  3.34962684
- 3.36303434 3.3763886  3.39705755 3.39705755 3.4        3.40734501
- 3.45398321 3.45976878 3.47706773 3.51283361 3.68239053 3.75499667]
-[ 22  93  20  34  45  36 108  86 112]
-[&#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-virginica&#39;]
-Iris-versicolor
-[0.14142136 0.24494897 0.31622777 0.31622777 0.36055513 0.42426407
- 0.45825757 0.45825757 0.5        0.50990195 0.59160798 0.59160798
- 0.60827625 0.6164414  0.64807407 0.64807407 0.64807407 0.66332496
- 0.678233   0.7        0.71414284 0.73484692 0.76811457 0.78102497
- 0.78740079 0.78740079 0.78740079 0.82462113 0.84852814 0.91104336
- 0.91651514 0.93808315 0.9539392  0.96953597 0.9797959  0.99498744
- 1.00498756 1.02469508 1.02469508 1.06301458 1.06301458 1.11803399
- 1.14455231 1.15325626 1.17046999 1.2328828  1.23693169 1.27279221
- 1.30384048 1.30384048 1.31529464 1.3190906  1.37477271 1.40712473
- 1.5        1.5        1.5132746  1.56843871 1.57480157 1.57797338
- 1.61554944 1.61864141 1.62788206 1.65529454 1.70293864 1.71172428
- 1.72046505 1.75499288 1.86010752 1.88414437 1.90262976 1.97484177
- 2.05182845 2.08326667 2.14009346 2.22261108 2.64764046 2.73861279
- 2.77488739 2.92232784 4.04722127 4.07062649 4.07553677 4.14125585
- 4.17372735 4.24264069 4.29534632 4.3150898  4.32319326 4.32897216
- 4.33935479 4.34281015 4.34971263 4.37378555 4.3760713  4.3760713
- 4.39431451 4.40908154 4.45196586 4.45196586 4.45533388 4.45645599
- 4.46430286 4.46542271 4.48776113 4.49888875 4.5177428  4.54972527
- 4.57602448 4.58693798 4.6        4.60868745 4.63465209 4.64112055
- 4.65295605 4.72757866 4.74657771 4.75920161 4.96990946 5.0039984 ]
-[107 109  50  17  63 103  76  87  83]
-[&#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.17320508 0.2236068  0.2236068  0.24494897 0.24494897 0.3
- 0.3        0.34641016 0.36055513 0.37416574 0.37416574 0.37416574
- 0.42426407 0.42426407 0.42426407 0.45825757 0.46904158 0.46904158
- 0.5        0.51961524 0.53851648 0.53851648 0.53851648 0.57445626
- 0.59160798 0.64807407 0.67082039 0.72111026 0.72801099 0.73484692
- 0.78102497 0.78740079 0.8660254  0.96953597 0.99498744 1.03440804
- 1.03440804 1.29614814 1.41774469 1.56524758 1.61554944 1.88944436
- 1.94679223 2.22934968 2.26715681 2.38537209 2.40624188 2.47386338
- 2.62488095 2.66458252 2.68514432 2.70739727 2.72213152 2.77668868
- 2.79284801 2.79642629 2.80178515 2.80713377 2.87054002 2.90688837
- 2.97321375 2.98998328 2.98998328 3.04302481 3.10322413 3.18433667
- 3.20468407 3.31662479 3.34813381 3.36154726 3.38969025 3.41467422
- 3.4176015  3.4423829  3.44383507 3.45976878 3.52136337 3.55668385
- 3.56370594 3.61247837 3.69052842 3.69052842 3.7013511  3.70270172
- 3.70270172 3.70540146 3.73363094 3.76696164 3.77491722 3.82230297
- 3.86005181 3.86910842 3.94968353 3.96736688 4.02988834 4.07185461
- 4.09023227 4.1024383  4.25558457 4.28018691 4.3        4.31277173
- 4.31856458 4.39203825 4.43395986 4.47325385 4.56289382 4.56289382
- 4.65295605 4.68294779 4.89182992 4.92848861 5.06063237 5.16333226
- 5.26307895 5.37959106 5.41202365 5.7835975  5.93043    5.94726828]
-[ 70   3  38 102  55  78  75 104  32]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.14142136 0.2236068  0.24494897 0.28284271 0.3        0.3
- 0.34641016 0.36055513 0.37416574 0.41231056 0.46904158 0.46904158
- 0.5        0.53851648 0.53851648 0.53851648 0.53851648 0.53851648
- 0.54772256 0.57445626 0.58309519 0.59160798 0.60827625 0.6164414
- 0.64031242 0.64031242 0.64807407 0.64807407 0.678233   0.678233
- 0.70710678 0.72111026 0.72801099 0.73484692 0.78740079 0.80622577
- 0.80622577 0.80622577 0.80622577 0.81240384 0.81240384 0.83066239
- 0.87749644 0.88317609 0.90553851 0.91104336 0.91651514 0.92195445
- 0.92195445 0.92736185 0.94339811 0.94339811 0.9486833  1.02956301
- 1.04403065 1.04403065 1.14891253 1.15758369 1.19163753 1.2083046
- 1.28840987 1.36014705 1.37840488 1.3892444  1.41421356 1.42126704
- 1.46969385 1.50996689 1.56843871 1.73493516 1.78044938 1.84661853
- 2.         2.04205779 2.06397674 2.0880613  2.20454077 2.26715681
- 2.41660919 2.53771551 3.26190129 3.29393382 3.3        3.36600654
- 3.39705755 3.47850543 3.51425668 3.539774   3.54118624 3.55246393
- 3.56230263 3.5665109  3.56931366 3.59583092 3.60693776 3.60693776
- 3.61247837 3.63593179 3.67423461 3.67423461 3.68103246 3.68510515
- 3.6986484  3.7        3.71752606 3.71752606 3.74833296 3.77624152
- 3.79736751 3.81313519 3.82883794 3.84447656 3.86522962 3.86781592
- 3.89230009 3.98120585 3.98622629 4.0012498  4.20475921 4.22137418]
-[ 42  79  81 113  59  90  16  30  62]
-[&#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-versicolor&#39;]
-Iris-virginica
-[0.1        0.1        0.14142136 0.17320508 0.2        0.2236068
- 0.24494897 0.24494897 0.24494897 0.28284271 0.28284271 0.31622777
- 0.33166248 0.33166248 0.33166248 0.36055513 0.4        0.41231056
- 0.41231056 0.43588989 0.4472136  0.4472136  0.45825757 0.46904158
- 0.48989795 0.50990195 0.50990195 0.50990195 0.64807407 0.7
- 0.70710678 0.73484692 0.74833148 0.78102497 0.80622577 0.9486833
- 0.96436508 1.07703296 1.22474487 1.24498996 1.6673332  1.97484177
- 2.02484567 2.17715411 2.36008474 2.37907545 2.41246762 2.46779254
- 2.60192237 2.61151297 2.65329983 2.66458252 2.68700577 2.70739727
- 2.71661554 2.72213152 2.73861279 2.75862284 2.78028775 2.86356421
- 2.95465734 2.95465734 2.98831056 2.99666481 3.03809151 3.06757233
- 3.082207   3.22024844 3.22645316 3.24961536 3.27719392 3.28937684
- 3.32716095 3.33016516 3.3763886  3.40734501 3.40734501 3.43656806
- 3.46987031 3.548239   3.58608422 3.6152455  3.63593179 3.64005494
- 3.65786823 3.65786823 3.65923489 3.69459064 3.7067506  3.74165739
- 3.74966665 3.78153408 3.81968585 3.82230297 3.92045916 3.96106046
- 3.98497177 4.01746189 4.15451562 4.19761837 4.20594817 4.22492603
- 4.23556372 4.25910789 4.31393092 4.35660418 4.43959458 4.43959458
- 4.52327315 4.58911756 4.7581509  4.80208288 4.92341345 5.01298314
- 5.13517283 5.25642464 5.26307895 5.64977876 5.78446195 5.80172388]
-[57 58 35 33  3 51 71 23  7]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.14142136 0.24494897 0.31622777 0.31622777 0.36055513 0.42426407
- 0.45825757 0.45825757 0.5        0.50990195 0.59160798 0.59160798
- 0.60827625 0.6164414  0.64807407 0.64807407 0.64807407 0.66332496
- 0.678233   0.7        0.71414284 0.73484692 0.76811457 0.78102497
- 0.78740079 0.78740079 0.78740079 0.82462113 0.84852814 0.91104336
- 0.91651514 0.93808315 0.9539392  0.96953597 0.9797959  0.99498744
- 1.00498756 1.02469508 1.02469508 1.06301458 1.06301458 1.11803399
- 1.14455231 1.15325626 1.17046999 1.2328828  1.23693169 1.27279221
- 1.30384048 1.30384048 1.31529464 1.3190906  1.37477271 1.40712473
- 1.5        1.5        1.5132746  1.56843871 1.57480157 1.57797338
- 1.61554944 1.61864141 1.62788206 1.65529454 1.70293864 1.71172428
- 1.72046505 1.75499288 1.86010752 1.88414437 1.90262976 1.97484177
- 2.05182845 2.08326667 2.14009346 2.22261108 2.64764046 2.73861279
- 2.77488739 2.92232784 4.04722127 4.07062649 4.07553677 4.14125585
- 4.17372735 4.24264069 4.29534632 4.3150898  4.32319326 4.32897216
- 4.33935479 4.34281015 4.34971263 4.37378555 4.3760713  4.3760713
- 4.39431451 4.40908154 4.45196586 4.45196586 4.45533388 4.45645599
- 4.46430286 4.46542271 4.48776113 4.49888875 4.5177428  4.54972527
- 4.57602448 4.58693798 4.6        4.60868745 4.63465209 4.64112055
- 4.65295605 4.72757866 4.74657771 4.75920161 4.96990946 5.0039984 ]
-[107 109  50  17  63 103  76  87  83]
-[&#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.36055513 0.78740079 0.87749644 0.87749644 1.00498756 1.06301458
- 1.08627805 1.15758369 1.22065556 1.23693169 1.36014705 1.47648231
- 1.47648231 1.57797338 1.60312195 1.63095064 1.72336879 1.83303028
- 1.84661853 1.88414437 1.93390796 1.95448203 2.00249844 2.00997512
- 2.00997512 2.01246118 2.01494417 2.16101828 2.19544984 2.29128785
- 2.30651252 2.39582971 2.43515913 2.45356883 2.48997992 2.49198716
- 2.49399278 2.51594913 2.51594913 2.53968502 2.54950976 2.55147016
- 2.60959767 2.63058929 2.63438797 2.66458252 2.66833281 2.70370117
- 2.70370117 2.71661554 2.73313007 2.84780617 2.85131549 2.91376046
- 2.92232784 2.96816442 3.07896086 3.08868904 3.16227766 3.21247568
- 3.23882695 3.24037035 3.30302891 3.33616546 3.34664011 3.34962684
- 3.36749165 3.40734501 3.45398321 3.63455637 3.71079506 3.78153408
- 3.80525952 3.83275358 3.84057287 3.87427413 4.47883914 4.50222167
- 4.53541619 4.592385   5.3        5.3244718  5.33853913 5.40462765
- 5.47905101 5.49363268 5.50181788 5.5479726  5.5569776  5.56057551
- 5.60267793 5.60267793 5.61159514 5.61604843 5.64446632 5.65773806
- 5.66480362 5.68066897 5.69649015 5.70788928 5.7280014  5.73846669
- 5.73846669 5.7835975  5.78791845 5.78791845 5.80172388 5.87452126
- 5.88557559 5.94894949 5.98414572 6.00416522 6.02079729 6.0506198
- 6.16927873 6.21449918 6.23698645 6.31030903 6.33166645 6.45677938]
-[ 37  19  21  64  69  24  96 106 101]
-[&#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.2        0.2        0.3        0.31622777 0.36055513 0.37416574
- 0.37416574 0.41231056 0.43588989 0.43588989 0.45825757 0.50990195
- 0.57445626 0.57445626 0.58309519 0.58309519 0.58309519 0.6164414
- 0.6164414  0.66332496 0.67082039 0.67082039 0.67082039 0.69282032
- 0.70710678 0.76811457 0.78102497 0.78740079 0.78740079 0.80622577
- 0.80622577 0.80622577 0.80622577 0.80622577 0.82462113 0.84852814
- 0.91651514 0.92736185 0.94339811 0.9539392  0.9539392  0.9539392
- 0.96436508 1.03440804 1.06770783 1.08166538 1.13578167 1.13578167
- 1.15758369 1.15758369 1.19163753 1.25698051 1.28062485 1.30384048
- 1.3453624  1.356466   1.41421356 1.41774469 1.4525839  1.47648231
- 1.49666295 1.5        1.51657509 1.55241747 1.55563492 1.60312195
- 1.6643317  1.7691806  1.81383571 1.83575598 1.93907194 1.97230829
- 1.99499373 2.00748599 2.01246118 2.01246118 2.60384331 2.64386081
- 2.68514432 2.76586334 3.75366488 3.75499667 3.82883794 3.84057287
- 3.86005181 3.98120585 3.98371686 4.01248053 4.01746189 4.01995025
- 4.02367991 4.05092582 4.08044115 4.09023227 4.09145451 4.09145451
- 4.10487515 4.11582313 4.11582313 4.14125585 4.15331193 4.15331193
- 4.16173041 4.17372735 4.20475921 4.20594817 4.20832508 4.22018957
- 4.25558457 4.28369    4.34626276 4.35086198 4.36004587 4.38748219
- 4.44297198 4.52769257 4.53210768 4.53210768 4.73392015 4.75078941]
-[ 87  54  85  76 109  83 105 103  50]
-[&#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.59160798 0.6        0.6164414  0.6164414  0.63245553 0.64031242
- 0.64807407 0.70710678 0.73484692 0.73484692 0.74833148 0.80622577
- 0.80622577 0.80622577 0.81853528 0.86023253 0.87749644 0.88317609
- 0.89442719 0.91104336 0.91651514 0.94339811 0.98488578 1.00498756
- 1.00498756 1.00995049 1.1        1.1045361  1.1045361  1.15758369
- 1.15758369 1.15758369 1.15758369 1.17473401 1.17898261 1.24498996
- 1.25299641 1.25299641 1.26885775 1.28062485 1.30384048 1.31529464
- 1.3190906  1.33790882 1.37840488 1.43178211 1.4525839  1.45945195
- 1.46969385 1.48996644 1.50665192 1.52315462 1.58113883 1.63095064
- 1.72916165 1.77482393 1.84661853 1.85741756 1.87082869 1.90525589
- 1.92093727 1.92873015 1.93390796 1.95192213 1.95192213 1.95448203
- 1.99499373 2.01494417 2.08566536 2.16333077 2.1725561  2.22036033
- 2.33452351 2.42074369 2.42899156 2.50998008 2.90344623 3.02985148
- 3.082207   3.2249031  4.39431451 4.411349   4.43057558 4.47325385
- 4.52327315 4.55850853 4.6400431  4.64973118 4.66261729 4.67546789
- 4.67867503 4.67867503 4.69680743 4.7        4.7        4.71062629
- 4.73497624 4.74236228 4.78016736 4.78434949 4.78748368 4.78748368
- 4.80624594 4.82286222 4.82700735 4.84355242 4.86723741 4.88876262
- 4.9132474  4.92138192 4.92544414 4.95378643 4.9578221  4.97393205
- 4.98096376 5.01298314 5.07838557 5.10196041 5.30094331 5.35350353]
-[ 76 107  50 109 103  63 119 101  17]
-[&#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.2236068  0.24494897 0.24494897 0.33166248 0.36055513 0.41231056
- 0.4472136  0.45825757 0.51961524 0.51961524 0.53851648 0.57445626
- 0.6        0.6164414  0.65574385 0.70710678 0.72111026 0.74833148
- 0.78740079 0.80622577 0.87749644 0.92736185 0.94339811 0.96953597
- 1.00995049 1.02469508 1.08166538 1.2083046  1.21655251 1.22065556
- 1.22474487 1.23693169 1.24498996 1.26885775 1.31529464 1.3190906
- 1.34164079 1.3453624  1.34907376 1.37477271 1.37477271 1.37477271
- 1.39283883 1.42126704 1.42126704 1.45602198 1.48996644 1.50665192
- 1.52643375 1.56524758 1.58429795 1.61245155 1.62480768 1.67630546
- 1.73493516 1.81934054 1.8547237  1.93390796 1.98997487 2.03469899
- 2.04694895 2.06397674 2.07364414 2.11896201 2.14009346 2.14709106
- 2.1725561  2.22934968 2.29128785 2.40624188 2.46170673 2.47184142
- 2.596151   2.60959767 2.67768557 2.70739727 3.23109888 3.28785644
- 3.318132   3.43365694 4.38748219 4.43170396 4.47660586 4.48218697
- 4.53210768 4.64435141 4.66261729 4.66583326 4.67118829 4.67546789
- 4.69148164 4.69148164 4.72122865 4.74341649 4.74657771 4.7581509
- 4.76759898 4.78016736 4.78957201 4.79374593 4.79374593 4.81975103
- 4.81975103 4.84767986 4.85901225 4.86312657 4.87134478 4.88876262
- 4.92036584 4.94873721 5.00899191 5.01298314 5.03289181 5.05667875
- 5.10881591 5.18844871 5.19230199 5.22111099 5.3860932  5.41571787]
-[ 61  97 100 103 119  69  76 101  77]
-[&#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39;
- &#39;Iris-virginica&#39;]
-Iris-virginica
-[0.1        0.17320508 0.17320508 0.24494897 0.24494897 0.28284271
- 0.28284271 0.34641016 0.36055513 0.41231056 0.41231056 0.4472136
- 0.4472136  0.45825757 0.45825757 0.50990195 0.51961524 0.54772256
- 0.56568542 0.57445626 0.58309519 0.58309519 0.58309519 0.63245553
- 0.64031242 0.64807407 0.74833148 0.76811457 0.76811457 0.78102497
- 0.8660254  0.87749644 0.92736185 0.98994949 1.08627805 1.12249722
- 1.17473401 1.3892444  1.42828569 1.6673332  1.70293864 1.99499373
- 2.03469899 2.3194827  2.33452351 2.47790234 2.54950976 2.57099203
- 2.73861279 2.78208555 2.81424946 2.81602557 2.85306852 2.89482297
- 2.91376046 2.92745623 2.94108823 2.94278779 2.97321375 3.00832179
- 3.10644491 3.14165561 3.15753068 3.20156212 3.22180074 3.31360831
- 3.34813381 3.42636834 3.45398321 3.49428104 3.49857114 3.548239
- 3.55246393 3.57910603 3.59583092 3.60555128 3.62904946 3.67287353
- 3.68239053 3.74432905 3.80919939 3.81968585 3.83796821 3.84057287
- 3.84447656 3.84447656 3.86005181 3.87814389 3.90128184 3.93192065
- 3.97114593 3.99749922 4.07062649 4.08289113 4.16293166 4.22018957
- 4.22610932 4.25675933 4.40227214 4.41474801 4.4384682  4.4609416
- 4.47772264 4.51884941 4.56179789 4.61085675 4.71062629 4.71062629
- 4.78957201 4.84767986 5.01198563 5.05371151 5.19230199 5.31130869
- 5.37494186 5.50181788 5.52268051 5.90592922 6.0448325  6.09425959]
-[104  55 102  78  70  32  38  52  51]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-[0.14142136 0.14142136 0.2236068  0.2236068  0.24494897 0.3
- 0.3        0.33166248 0.34641016 0.37416574 0.37416574 0.41231056
- 0.42426407 0.43588989 0.4472136  0.45825757 0.48989795 0.50990195
- 0.50990195 0.53851648 0.53851648 0.53851648 0.53851648 0.57445626
- 0.57445626 0.678233   0.678233   0.71414284 0.76157731 0.78740079
- 0.80622577 0.81853528 0.85440037 0.90553851 1.00498756 1.04403065
- 1.08166538 1.3190906  1.40356688 1.55241747 1.58429795 1.84119526
- 1.88944436 2.16101828 2.20454077 2.32163735 2.36854386 2.41246762
- 2.57099203 2.62488095 2.62678511 2.64764046 2.67394839 2.72213152
- 2.74590604 2.74954542 2.75317998 2.75862284 2.82488938 2.83019434
- 2.9291637  2.96310648 2.96310648 3.00998339 3.04795013 3.14483704
- 3.15277655 3.27108545 3.27566787 3.31360831 3.33016516 3.36749165
- 3.38378486 3.38526218 3.40881211 3.4190642  3.46121366 3.50428309
- 3.50570963 3.56791255 3.63593179 3.64691651 3.65239647 3.66196668
- 3.66196668 3.67014986 3.67423461 3.71618084 3.72155881 3.76430604
- 3.80263067 3.81968585 3.89615195 3.91152144 3.98246155 4.03236903
- 4.05092582 4.0607881  4.21544778 4.23556372 4.25558457 4.27668096
- 4.28252262 4.34165867 4.38406204 4.42831797 4.52327315 4.52327315
- 4.60760241 4.65295605 4.83838816 4.87749936 5.01298314 5.12445119
- 5.20576603 5.32728824 5.35443741 5.73149195 5.87452126 5.9084685 ]
-[102  55  70  32 104   3  38  78  51]
-[&#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;]
-Iris-setosa
-Correctly classified instances 30
-Incorrectly classified instances 0
-Accuracy based on Euclidean Distance with 7 Neighbors 1.0
-</pre>
-</div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[188]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[&#39;Iris-versicolor&#39; &#39;Iris-setosa&#39; &#39;Iris-versicolor&#39; &#39;Iris-setosa&#39;
- &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-virginica&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-virginica&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-setosa&#39; &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-virginica&#39; &#39;Iris-virginica&#39; &#39;Iris-setosa&#39;
- &#39;Iris-versicolor&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39; &#39;Iris-setosa&#39;
- &#39;Iris-virginica&#39; &#39;Iris-versicolor&#39; &#39;Iris-setosa&#39; &#39;Iris-versicolor&#39;]
-</pre>
-</div>
 </div>
 
 </div>
